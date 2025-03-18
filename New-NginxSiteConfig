@@ -1,0 +1,34 @@
+function New-NginxSiteConfig {
+    param(
+        # Optionally specify the site name (default is "mywebsite")
+        [Parameter(Mandatory=$false)]
+        [string]$SiteName = "mywebsite"
+    )
+
+    $configPath = "/etc/nginx/sites-available/$SiteName.conf"
+
+    if (Test-Path $configPath) {
+        Write-Host "Configuration file already exists at $configPath"
+        return
+    }
+
+    # Default Nginx configuration template
+    $defaultConfig = @"
+server {
+    listen 80;
+    server_name example.com;
+    root /var/www/html;
+
+    index index.html index.htm index.php;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+"@
+
+    # Write the default configuration to the file using sudo privileges
+    $defaultConfig | sudo tee $configPath > $null
+
+    Write-Host "Created Nginx site configuration file at $configPath"
+}
