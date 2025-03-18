@@ -1,0 +1,12 @@
+function Install-Nginx {
+    Write-Host "Updating package list and upgrading existing packages..."
+    sudo apt-get update
+    sudo apt-get upgrade -y
+
+    Write-Host "Installing the latest version of Nginx..."
+    sudo apt-get install -y nginx
+
+    clear-host
+    Write-Host "Nginx has been installed and is up to date."
+    nginx -v
+}
