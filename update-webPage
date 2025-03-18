@@ -1,0 +1,37 @@
+function update-webPage {
+
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$RepoLink
+    )
+
+    # Save the current directory
+    $p = pwd
+
+    # Remove all files and subdirectories in the target directory
+    sudo rm -rf /var/www/html/*
+
+    # Navigate to the target directory
+    cd /root/
+
+    # Clone the repository into a temporary directory
+    git clone $RepoLink tempdir
+
+    # Check if the 'html' directory exists within the cloned repository
+    if (Test-Path -Path "./tempdir/html") {
+        # Move the contents of the 'html' directory to /var/www/html
+        # This moves all files and subdirectories recursively
+        Get-ChildItem -Path ./tempdir/html -Recurse | Move-Item -Destination /var/www/html
+    } else {
+        Write-Host "The specified directory 'html' does not exist within the repository."
+    }
+
+    # Remove the now empty temporary directory
+    Remove-Item -Path ./tempdir -Recurse -Force
+
+    # Restore the original directory
+    cd $p
+
+    sudo chmod +x /var/www/html 
+    sudo chmod 755 /var/www/html 
+}
