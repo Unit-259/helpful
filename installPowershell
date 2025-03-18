@@ -1,0 +1,17 @@
+# Update package lists and install prerequisites
+sudo apt update && sudo apt install -y wget apt-transport-https software-properties-common
+
+# Download the Microsoft repository GPG keys package (dynamically using your Ubuntu release version)
+wget -q https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb
+
+# Register the Microsoft repository
+sudo dpkg -i packages-microsoft-prod.deb
+
+# Update package lists again after adding the Microsoft repo
+sudo apt update
+
+# Install PowerShell
+sudo apt install -y powershell
+
+# Launch PowerShell
+pwsh
