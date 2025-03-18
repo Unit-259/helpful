@@ -1,0 +1,7 @@
+if (-Not (Test-Path -Path $profile)) {
+    $profileDir = Split-Path -Parent $profile
+    if (-Not (Test-Path -Path $profileDir)) {
+        New-Item -ItemType Directory -Path $profileDir -Force
+    }
+    New-Item -ItemType File -Path $profile -Force
+}
