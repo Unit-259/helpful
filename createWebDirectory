@@ -1,0 +1,4 @@
+$directory = "/var/www/html/"
+if (-Not (Test-Path -Path $directory)) {
+    New-Item -ItemType Directory -Path $directory -Force
+}
