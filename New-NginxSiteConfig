@@ -5,7 +5,7 @@ function New-NginxSiteConfig {
         [string]$SiteName = "mywebsite"
     )
 
-    $configPath = "/etc/nginx/sites-available/$SiteName.conf"
+    $configPath = "/etc/nginx/sites-available/$SiteName"
 
     if (Test-Path $configPath) {
         Write-Host "Configuration file already exists at $configPath"
