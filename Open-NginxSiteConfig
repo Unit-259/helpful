@@ -1,0 +1,18 @@
+function Open-NginxSiteConfig {
+    param(
+        # Optionally specify the site name (default is "mywebsite")
+        [Parameter(Mandatory=$false)]
+        [string]$SiteName = "mywebsite"
+    )
+
+    $configPath = "/etc/nginx/sites-available/$SiteName"
+
+    if (-Not (Test-Path $configPath)) {
+        Write-Error "Configuration file does not exist at $configPath"
+        return
+    }
+
+    Write-Host "Opening Nginx site configuration file at $configPath..."
+    # Open the config file with nano (change 'nano' to your preferred editor if needed)
+    sudo nano $configPath
+}
