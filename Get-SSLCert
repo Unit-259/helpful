@@ -1,0 +1,18 @@
+function Get-SSLCert {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Domain,
+        [Parameter(Mandatory=$false)]
+        [string]$Email = "admin@example.com"
+    )
+
+    # Check if certbot is installed; if not, install it along with the Nginx plugin
+    if (-not (Get-Command certbot -ErrorAction SilentlyContinue)) {
+        Write-Host "Certbot not found. Installing certbot and the Nginx plugin..."
+        sudo apt-get update
+        sudo apt-get install -y certbot python3-certbot-nginx
+    }
+
+    Write-Host "Requesting SSL certificate for domain $Domain using Let's Encrypt..."
+    sudo certbot --nginx --non-interactive --agree-tos --email $Email -d $Domain
+}
