@@ -1,3 +1,4 @@
 # helpful
 
-[😈](https://strap-hearings-notified-settings.trycloudflare.com?tracker=svg1)
+
+![Tracker](https://strap-hearings-notified-settings.trycloudflare.com?tracker=image)
