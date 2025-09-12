@@ -1,4 +1,4 @@
 # helpful
 
 
-![Tracker](https://strap-hearings-notified-settings.trycloudflare.com?tracker=image)
+https://x.com/IceSolst/status/1965437326420517060
